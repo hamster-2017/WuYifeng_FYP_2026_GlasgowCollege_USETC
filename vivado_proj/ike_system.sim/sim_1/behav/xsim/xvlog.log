@@ -1,0 +1,12 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module aes_core
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_key_expand.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module aes_key_expand
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module aes_sbox
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module aes_top
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/cbc_mode.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cbc_mode
+INFO: [VRFC 10-2263] Analyzing Verilog file "E:/Xilinx/ike_crypto_system/sim/tb_aes_cbc.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_aes_cbc

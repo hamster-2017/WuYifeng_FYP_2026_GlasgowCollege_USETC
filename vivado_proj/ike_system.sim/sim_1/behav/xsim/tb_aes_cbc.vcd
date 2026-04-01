@@ -1,0 +1,1782 @@
+$date
+   Mon Mar 30 08:40:09 2026
+$end
+$version
+  2019.1
+$end
+$timescale
+  1ps
+$end
+$scope module tb_aes_cbc $end
+$var reg 1 ! clk $end
+$var reg 1 " rst_n $end
+$var reg 1 # start $end
+$var reg 1 $ decrypt $end
+$var reg 1 % key_load $end
+$var reg 1 & iv_load $end
+$var reg 128 ' key_in [127:0] $end
+$var reg 128 ( iv_in [127:0] $end
+$var reg 128 ) data_in [127:0] $end
+$var wire 128 * data_out [127:0] $end
+$var wire 1 + key_ready $end
+$var wire 1 , done $end
+$var integer 32 - pass_count $end
+$var integer 32 . fail_count $end
+$scope module uut $end
+$var wire 1 / clk $end
+$var wire 1 0 rst_n $end
+$var wire 1 1 start $end
+$var wire 1 2 decrypt $end
+$var wire 1 3 key_load $end
+$var wire 1 4 iv_load $end
+$var wire 128 5 key_in [127:0] $end
+$var wire 128 6 iv_in [127:0] $end
+$var wire 128 7 data_in [127:0] $end
+$var wire 128 * data_out [127:0] $end
+$var wire 1 + key_ready $end
+$var wire 1 , done $end
+$var wire 1 8 cbc_aes_start $end
+$var wire 1 9 cbc_aes_decrypt $end
+$var wire 128 : cbc_aes_data_in [127:0] $end
+$var wire 128 ; aes_core_data_out [127:0] $end
+$var wire 1 < aes_core_done $end
+$scope module u_key_expand $end
+$var wire 1 / clk $end
+$var wire 1 0 rst_n $end
+$var wire 1 3 key_load $end
+$var wire 128 5 key_in [127:0] $end
+$var wire 1 + key_ready $end
+$var wire 128 = round_key_0 [127:0] $end
+$var wire 128 > round_key_1 [127:0] $end
+$var wire 128 ? round_key_2 [127:0] $end
+$var wire 128 @ round_key_3 [127:0] $end
+$var wire 128 A round_key_4 [127:0] $end
+$var wire 128 B round_key_5 [127:0] $end
+$var wire 128 C round_key_6 [127:0] $end
+$var wire 128 D round_key_7 [127:0] $end
+$var wire 128 E round_key_8 [127:0] $end
+$var wire 128 F round_key_9 [127:0] $end
+$var wire 128 G round_key_10 [127:0] $end
+$var reg 4 H expand_cnt [3:0] $end
+$var reg 1 I expanding $end
+$var reg 1 J done $end
+$var wire 32 K prev_last_word [31:0] $end
+$var wire 8 L sub_b0 [7:0] $end
+$var wire 8 M sub_b1 [7:0] $end
+$var wire 8 N sub_b2 [7:0] $end
+$var wire 8 O sub_b3 [7:0] $end
+$var wire 32 P sub_word [31:0] $end
+$var wire 32 Q rot_sub_word [31:0] $end
+$var wire 128 R prev_full_key [127:0] $end
+$var wire 32 S rot_word [31:0] $end
+$scope module sb0 $end
+$var wire 8 T data_in [7:0] $end
+$var wire 1 U decrypt $end
+$var wire 8 L data_out [7:0] $end
+$var wire 8 V sbox_enc [7:0] $end
+$var wire 8 W sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 X sbox_forward [7:0] $end
+$var reg 8 Y addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 Z sbox_inverse [7:0] $end
+$var reg 8 [ addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module sb1 $end
+$var wire 8 \ data_in [7:0] $end
+$var wire 1 ] decrypt $end
+$var wire 8 M data_out [7:0] $end
+$var wire 8 ^ sbox_enc [7:0] $end
+$var wire 8 _ sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 ` sbox_forward [7:0] $end
+$var reg 8 a addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 b sbox_inverse [7:0] $end
+$var reg 8 c addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module sb2 $end
+$var wire 8 d data_in [7:0] $end
+$var wire 1 e decrypt $end
+$var wire 8 N data_out [7:0] $end
+$var wire 8 f sbox_enc [7:0] $end
+$var wire 8 g sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 h sbox_forward [7:0] $end
+$var reg 8 i addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 j sbox_inverse [7:0] $end
+$var reg 8 k addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module sb3 $end
+$var wire 8 l data_in [7:0] $end
+$var wire 1 m decrypt $end
+$var wire 8 O data_out [7:0] $end
+$var wire 8 n sbox_enc [7:0] $end
+$var wire 8 o sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 p sbox_forward [7:0] $end
+$var reg 8 q addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 r sbox_inverse [7:0] $end
+$var reg 8 s addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope function rcon $end
+$var reg 8 t rcon [7:0] $end
+$var reg 4 u round [3:0] $end
+$upscope $end
+$upscope $end
+$scope module u_aes_core $end
+$var wire 1 / clk $end
+$var wire 1 0 rst_n $end
+$var wire 1 8 start $end
+$var wire 1 9 decrypt $end
+$var wire 128 : data_in [127:0] $end
+$var wire 128 = round_key_0 [127:0] $end
+$var wire 128 > round_key_1 [127:0] $end
+$var wire 128 ? round_key_2 [127:0] $end
+$var wire 128 @ round_key_3 [127:0] $end
+$var wire 128 A round_key_4 [127:0] $end
+$var wire 128 B round_key_5 [127:0] $end
+$var wire 128 C round_key_6 [127:0] $end
+$var wire 128 D round_key_7 [127:0] $end
+$var wire 128 E round_key_8 [127:0] $end
+$var wire 128 F round_key_9 [127:0] $end
+$var wire 128 G round_key_10 [127:0] $end
+$var reg 128 v data_out [127:0] $end
+$var reg 1 w done $end
+$var reg 2 x state [1:0] $end
+$var reg 4 y round_cnt [3:0] $end
+$var reg 128 z state_matrix [127:0] $end
+$var reg 128 { current_rk [127:0] $end
+$var wire 128 | enc_after_sub [127:0] $end
+$var wire 128 } enc_after_shift [127:0] $end
+$var wire 128 ~ enc_after_mix [127:0] $end
+$var wire 128 !! enc_round_result [127:0] $end
+$var wire 128 "! enc_final_result [127:0] $end
+$var wire 128 #! dec_after_shift [127:0] $end
+$var wire 128 $! dec_after_sub [127:0] $end
+$var wire 128 %! dec_after_add_rk [127:0] $end
+$var wire 128 &! dec_round_result [127:0] $end
+$var wire 128 '! dec_final_result [127:0] $end
+$var parameter 2 (! IDLE [1:0] $end
+$var parameter 2 )! ROUNDS [1:0] $end
+$var parameter 2 *! FINISH [1:0] $end
+$scope module enc_sbox_gen[0].u_sbox_enc $end
+$var wire 8 +! data_in [7:0] $end
+$var wire 1 ,! decrypt $end
+$var wire 8 -! data_out [7:0] $end
+$var wire 8 .! sbox_enc [7:0] $end
+$var wire 8 /! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 0! sbox_forward [7:0] $end
+$var reg 8 1! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 2! sbox_inverse [7:0] $end
+$var reg 8 3! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[1].u_sbox_enc $end
+$var wire 8 4! data_in [7:0] $end
+$var wire 1 5! decrypt $end
+$var wire 8 6! data_out [7:0] $end
+$var wire 8 7! sbox_enc [7:0] $end
+$var wire 8 8! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 9! sbox_forward [7:0] $end
+$var reg 8 :! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 ;! sbox_inverse [7:0] $end
+$var reg 8 <! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[2].u_sbox_enc $end
+$var wire 8 =! data_in [7:0] $end
+$var wire 1 >! decrypt $end
+$var wire 8 ?! data_out [7:0] $end
+$var wire 8 @! sbox_enc [7:0] $end
+$var wire 8 A! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 B! sbox_forward [7:0] $end
+$var reg 8 C! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 D! sbox_inverse [7:0] $end
+$var reg 8 E! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[3].u_sbox_enc $end
+$var wire 8 F! data_in [7:0] $end
+$var wire 1 G! decrypt $end
+$var wire 8 H! data_out [7:0] $end
+$var wire 8 I! sbox_enc [7:0] $end
+$var wire 8 J! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 K! sbox_forward [7:0] $end
+$var reg 8 L! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 M! sbox_inverse [7:0] $end
+$var reg 8 N! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[4].u_sbox_enc $end
+$var wire 8 O! data_in [7:0] $end
+$var wire 1 P! decrypt $end
+$var wire 8 Q! data_out [7:0] $end
+$var wire 8 R! sbox_enc [7:0] $end
+$var wire 8 S! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 T! sbox_forward [7:0] $end
+$var reg 8 U! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 V! sbox_inverse [7:0] $end
+$var reg 8 W! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[5].u_sbox_enc $end
+$var wire 8 X! data_in [7:0] $end
+$var wire 1 Y! decrypt $end
+$var wire 8 Z! data_out [7:0] $end
+$var wire 8 [! sbox_enc [7:0] $end
+$var wire 8 \! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 ]! sbox_forward [7:0] $end
+$var reg 8 ^! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 _! sbox_inverse [7:0] $end
+$var reg 8 `! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[6].u_sbox_enc $end
+$var wire 8 a! data_in [7:0] $end
+$var wire 1 b! decrypt $end
+$var wire 8 c! data_out [7:0] $end
+$var wire 8 d! sbox_enc [7:0] $end
+$var wire 8 e! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 f! sbox_forward [7:0] $end
+$var reg 8 g! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 h! sbox_inverse [7:0] $end
+$var reg 8 i! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[7].u_sbox_enc $end
+$var wire 8 j! data_in [7:0] $end
+$var wire 1 k! decrypt $end
+$var wire 8 l! data_out [7:0] $end
+$var wire 8 m! sbox_enc [7:0] $end
+$var wire 8 n! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 o! sbox_forward [7:0] $end
+$var reg 8 p! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 q! sbox_inverse [7:0] $end
+$var reg 8 r! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[8].u_sbox_enc $end
+$var wire 8 s! data_in [7:0] $end
+$var wire 1 t! decrypt $end
+$var wire 8 u! data_out [7:0] $end
+$var wire 8 v! sbox_enc [7:0] $end
+$var wire 8 w! sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 x! sbox_forward [7:0] $end
+$var reg 8 y! addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 z! sbox_inverse [7:0] $end
+$var reg 8 {! addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[9].u_sbox_enc $end
+$var wire 8 |! data_in [7:0] $end
+$var wire 1 }! decrypt $end
+$var wire 8 ~! data_out [7:0] $end
+$var wire 8 !" sbox_enc [7:0] $end
+$var wire 8 "" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 #" sbox_forward [7:0] $end
+$var reg 8 $" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 %" sbox_inverse [7:0] $end
+$var reg 8 &" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[10].u_sbox_enc $end
+$var wire 8 '" data_in [7:0] $end
+$var wire 1 (" decrypt $end
+$var wire 8 )" data_out [7:0] $end
+$var wire 8 *" sbox_enc [7:0] $end
+$var wire 8 +" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 ," sbox_forward [7:0] $end
+$var reg 8 -" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 ." sbox_inverse [7:0] $end
+$var reg 8 /" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[11].u_sbox_enc $end
+$var wire 8 0" data_in [7:0] $end
+$var wire 1 1" decrypt $end
+$var wire 8 2" data_out [7:0] $end
+$var wire 8 3" sbox_enc [7:0] $end
+$var wire 8 4" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 5" sbox_forward [7:0] $end
+$var reg 8 6" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 7" sbox_inverse [7:0] $end
+$var reg 8 8" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[12].u_sbox_enc $end
+$var wire 8 9" data_in [7:0] $end
+$var wire 1 :" decrypt $end
+$var wire 8 ;" data_out [7:0] $end
+$var wire 8 <" sbox_enc [7:0] $end
+$var wire 8 =" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 >" sbox_forward [7:0] $end
+$var reg 8 ?" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 @" sbox_inverse [7:0] $end
+$var reg 8 A" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[13].u_sbox_enc $end
+$var wire 8 B" data_in [7:0] $end
+$var wire 1 C" decrypt $end
+$var wire 8 D" data_out [7:0] $end
+$var wire 8 E" sbox_enc [7:0] $end
+$var wire 8 F" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 G" sbox_forward [7:0] $end
+$var reg 8 H" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 I" sbox_inverse [7:0] $end
+$var reg 8 J" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[14].u_sbox_enc $end
+$var wire 8 K" data_in [7:0] $end
+$var wire 1 L" decrypt $end
+$var wire 8 M" data_out [7:0] $end
+$var wire 8 N" sbox_enc [7:0] $end
+$var wire 8 O" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 P" sbox_forward [7:0] $end
+$var reg 8 Q" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 R" sbox_inverse [7:0] $end
+$var reg 8 S" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module enc_sbox_gen[15].u_sbox_enc $end
+$var wire 8 T" data_in [7:0] $end
+$var wire 1 U" decrypt $end
+$var wire 8 V" data_out [7:0] $end
+$var wire 8 W" sbox_enc [7:0] $end
+$var wire 8 X" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 Y" sbox_forward [7:0] $end
+$var reg 8 Z" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 [" sbox_inverse [7:0] $end
+$var reg 8 \" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[0].u_sbox_dec $end
+$var wire 8 ]" data_in [7:0] $end
+$var wire 1 ^" decrypt $end
+$var wire 8 _" data_out [7:0] $end
+$var wire 8 `" sbox_enc [7:0] $end
+$var wire 8 a" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 b" sbox_forward [7:0] $end
+$var reg 8 c" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 d" sbox_inverse [7:0] $end
+$var reg 8 e" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[1].u_sbox_dec $end
+$var wire 8 f" data_in [7:0] $end
+$var wire 1 g" decrypt $end
+$var wire 8 h" data_out [7:0] $end
+$var wire 8 i" sbox_enc [7:0] $end
+$var wire 8 j" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 k" sbox_forward [7:0] $end
+$var reg 8 l" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 m" sbox_inverse [7:0] $end
+$var reg 8 n" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[2].u_sbox_dec $end
+$var wire 8 o" data_in [7:0] $end
+$var wire 1 p" decrypt $end
+$var wire 8 q" data_out [7:0] $end
+$var wire 8 r" sbox_enc [7:0] $end
+$var wire 8 s" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 t" sbox_forward [7:0] $end
+$var reg 8 u" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 v" sbox_inverse [7:0] $end
+$var reg 8 w" addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[3].u_sbox_dec $end
+$var wire 8 x" data_in [7:0] $end
+$var wire 1 y" decrypt $end
+$var wire 8 z" data_out [7:0] $end
+$var wire 8 {" sbox_enc [7:0] $end
+$var wire 8 |" sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 }" sbox_forward [7:0] $end
+$var reg 8 ~" addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 !# sbox_inverse [7:0] $end
+$var reg 8 "# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[4].u_sbox_dec $end
+$var wire 8 ## data_in [7:0] $end
+$var wire 1 $# decrypt $end
+$var wire 8 %# data_out [7:0] $end
+$var wire 8 &# sbox_enc [7:0] $end
+$var wire 8 '# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 (# sbox_forward [7:0] $end
+$var reg 8 )# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 *# sbox_inverse [7:0] $end
+$var reg 8 +# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[5].u_sbox_dec $end
+$var wire 8 ,# data_in [7:0] $end
+$var wire 1 -# decrypt $end
+$var wire 8 .# data_out [7:0] $end
+$var wire 8 /# sbox_enc [7:0] $end
+$var wire 8 0# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 1# sbox_forward [7:0] $end
+$var reg 8 2# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 3# sbox_inverse [7:0] $end
+$var reg 8 4# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[6].u_sbox_dec $end
+$var wire 8 5# data_in [7:0] $end
+$var wire 1 6# decrypt $end
+$var wire 8 7# data_out [7:0] $end
+$var wire 8 8# sbox_enc [7:0] $end
+$var wire 8 9# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 :# sbox_forward [7:0] $end
+$var reg 8 ;# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 <# sbox_inverse [7:0] $end
+$var reg 8 =# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[7].u_sbox_dec $end
+$var wire 8 ># data_in [7:0] $end
+$var wire 1 ?# decrypt $end
+$var wire 8 @# data_out [7:0] $end
+$var wire 8 A# sbox_enc [7:0] $end
+$var wire 8 B# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 C# sbox_forward [7:0] $end
+$var reg 8 D# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 E# sbox_inverse [7:0] $end
+$var reg 8 F# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[8].u_sbox_dec $end
+$var wire 8 G# data_in [7:0] $end
+$var wire 1 H# decrypt $end
+$var wire 8 I# data_out [7:0] $end
+$var wire 8 J# sbox_enc [7:0] $end
+$var wire 8 K# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 L# sbox_forward [7:0] $end
+$var reg 8 M# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 N# sbox_inverse [7:0] $end
+$var reg 8 O# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[9].u_sbox_dec $end
+$var wire 8 P# data_in [7:0] $end
+$var wire 1 Q# decrypt $end
+$var wire 8 R# data_out [7:0] $end
+$var wire 8 S# sbox_enc [7:0] $end
+$var wire 8 T# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 U# sbox_forward [7:0] $end
+$var reg 8 V# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 W# sbox_inverse [7:0] $end
+$var reg 8 X# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[10].u_sbox_dec $end
+$var wire 8 Y# data_in [7:0] $end
+$var wire 1 Z# decrypt $end
+$var wire 8 [# data_out [7:0] $end
+$var wire 8 \# sbox_enc [7:0] $end
+$var wire 8 ]# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 ^# sbox_forward [7:0] $end
+$var reg 8 _# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 `# sbox_inverse [7:0] $end
+$var reg 8 a# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[11].u_sbox_dec $end
+$var wire 8 b# data_in [7:0] $end
+$var wire 1 c# decrypt $end
+$var wire 8 d# data_out [7:0] $end
+$var wire 8 e# sbox_enc [7:0] $end
+$var wire 8 f# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 g# sbox_forward [7:0] $end
+$var reg 8 h# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 i# sbox_inverse [7:0] $end
+$var reg 8 j# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[12].u_sbox_dec $end
+$var wire 8 k# data_in [7:0] $end
+$var wire 1 l# decrypt $end
+$var wire 8 m# data_out [7:0] $end
+$var wire 8 n# sbox_enc [7:0] $end
+$var wire 8 o# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 p# sbox_forward [7:0] $end
+$var reg 8 q# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 r# sbox_inverse [7:0] $end
+$var reg 8 s# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[13].u_sbox_dec $end
+$var wire 8 t# data_in [7:0] $end
+$var wire 1 u# decrypt $end
+$var wire 8 v# data_out [7:0] $end
+$var wire 8 w# sbox_enc [7:0] $end
+$var wire 8 x# sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 y# sbox_forward [7:0] $end
+$var reg 8 z# addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 {# sbox_inverse [7:0] $end
+$var reg 8 |# addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[14].u_sbox_dec $end
+$var wire 8 }# data_in [7:0] $end
+$var wire 1 ~# decrypt $end
+$var wire 8 !$ data_out [7:0] $end
+$var wire 8 "$ sbox_enc [7:0] $end
+$var wire 8 #$ sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 $$ sbox_forward [7:0] $end
+$var reg 8 %$ addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 &$ sbox_inverse [7:0] $end
+$var reg 8 '$ addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope module dec_sbox_gen[15].u_sbox_dec $end
+$var wire 8 ($ data_in [7:0] $end
+$var wire 1 )$ decrypt $end
+$var wire 8 *$ data_out [7:0] $end
+$var wire 8 +$ sbox_enc [7:0] $end
+$var wire 8 ,$ sbox_dec [7:0] $end
+$scope function sbox_forward $end
+$var reg 8 -$ sbox_forward [7:0] $end
+$var reg 8 .$ addr [7:0] $end
+$upscope $end
+$scope function sbox_inverse $end
+$var reg 8 /$ sbox_inverse [7:0] $end
+$var reg 8 0$ addr [7:0] $end
+$upscope $end
+$upscope $end
+$scope function gf_mul2 $end
+$var reg 8 1$ gf_mul2 [7:0] $end
+$var reg 8 2$ x [7:0] $end
+$upscope $end
+$scope function gf_mul3 $end
+$var reg 8 3$ gf_mul3 [7:0] $end
+$var reg 8 4$ x [7:0] $end
+$upscope $end
+$scope function gf_mul9 $end
+$var reg 8 5$ gf_mul9 [7:0] $end
+$var reg 8 6$ x [7:0] $end
+$upscope $end
+$scope function gf_mul11 $end
+$var reg 8 7$ gf_mul11 [7:0] $end
+$var reg 8 8$ x [7:0] $end
+$upscope $end
+$scope function gf_mul13 $end
+$var reg 8 9$ gf_mul13 [7:0] $end
+$var reg 8 :$ x [7:0] $end
+$upscope $end
+$scope function gf_mul14 $end
+$var reg 8 ;$ gf_mul14 [7:0] $end
+$var reg 8 <$ x [7:0] $end
+$upscope $end
+$scope function mix_column $end
+$var reg 32 =$ mix_column [31:0] $end
+$var reg 32 >$ col [31:0] $end
+$var reg 8 ?$ b0 [7:0] $end
+$var reg 8 @$ b1 [7:0] $end
+$var reg 8 A$ b2 [7:0] $end
+$var reg 8 B$ b3 [7:0] $end
+$var reg 8 C$ r0 [7:0] $end
+$var reg 8 D$ r1 [7:0] $end
+$var reg 8 E$ r2 [7:0] $end
+$var reg 8 F$ r3 [7:0] $end
+$upscope $end
+$scope function inv_mix_column $end
+$var reg 32 G$ inv_mix_column [31:0] $end
+$var reg 32 H$ col [31:0] $end
+$var reg 8 I$ b0 [7:0] $end
+$var reg 8 J$ b1 [7:0] $end
+$var reg 8 K$ b2 [7:0] $end
+$var reg 8 L$ b3 [7:0] $end
+$var reg 8 M$ r0 [7:0] $end
+$var reg 8 N$ r1 [7:0] $end
+$var reg 8 O$ r2 [7:0] $end
+$var reg 8 P$ r3 [7:0] $end
+$upscope $end
+$upscope $end
+$scope module u_cbc $end
+$var wire 1 / clk $end
+$var wire 1 0 rst_n $end
+$var wire 1 1 start $end
+$var wire 1 2 decrypt $end
+$var wire 1 4 iv_load $end
+$var wire 128 6 iv_in [127:0] $end
+$var wire 128 7 data_in [127:0] $end
+$var wire 128 * data_out [127:0] $end
+$var wire 1 , done $end
+$var reg 1 Q$ aes_start $end
+$var reg 1 R$ aes_decrypt $end
+$var reg 128 S$ aes_data_in [127:0] $end
+$var wire 128 ; aes_data_out [127:0] $end
+$var wire 1 < aes_done $end
+$var reg 2 T$ state [1:0] $end
+$var reg 128 U$ chain_val [127:0] $end
+$var reg 128 V$ cipher_in_save [127:0] $end
+$var reg 128 W$ output_latch [127:0] $end
+$var reg 1 X$ is_decrypt $end
+$var parameter 2 Y$ IDLE [1:0] $end
+$var parameter 2 Z$ WAIT [1:0] $end
+$var parameter 2 [$ OUTPUT [1:0] $end
+$upscope $end
+$upscope $end
+$scope task wait_done $end
+$upscope $end
+$scope task check_result $end
+$var reg 128 \$ expected [127:0] $end
+$var reg 256 ]$ test_name [255:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+bx !!
+b1100011 !"
+b1010010 !#
+b1010010 !$
+0"
+bx "!
+b1010010 ""
+b0 "#
+b1100011 "$
+0#
+b0 #!
+b1100011 #"
+b0 ##
+b1010010 #$
+0$
+b1010010010100100101001001010010010100100101001001010010010100100101001001010010010100100101001001010010010100100101001001010010 $!
+b0 $"
+1$#
+b1100011 $$
+0%
+bx %!
+b1010010 %"
+b1010010 %#
+b0 %$
+0&
+bx &!
+b0 &"
+b1100011 &#
+b1010010 &$
+b0 '
+bx '!
+b0 '"
+b1010010 '#
+b0 '$
+b0 (
+b0 (!
+0("
+b1100011 (#
+b0 ($
+b0 )
+b10 )!
+b1100011 )"
+b0 )#
+1)$
+b0 *
+b11 *!
+b1100011 *"
+b1010010 *#
+b1010010 *$
+0+
+b0 +!
+b1010010 +"
+b0 +#
+b1100011 +$
+0,
+0,!
+b1100011 ,"
+b0 ,#
+b1010010 ,$
+b0 -
+b1100011 -!
+b0 -"
+1-#
+b1100011 -$
+b0 .
+b1100011 .!
+b1010010 ."
+b1010010 .#
+b0 .$
+0/
+b1010010 /!
+b0 /"
+b1100011 /#
+b1010010 /$
+00
+b1100011 0!
+b0 0"
+b1010010 0#
+b0 0$
+01
+b0 1!
+01"
+b1100011 1#
+b11000110 1$
+02
+b1010010 2!
+b1100011 2"
+b0 2#
+b1100011 2$
+03
+b0 3!
+b1100011 3"
+b1010010 3#
+b10100101 3$
+04
+b0 4!
+b1010010 4"
+b0 4#
+b1100011 4$
+b0 5
+05!
+b1100011 5"
+b0 5#
+bx 5$
+b0 6
+b1100011 6!
+b0 6"
+16#
+bx 6$
+b0 7
+b1100011 7!
+b1010010 7"
+b1010010 7#
+bx 7$
+08
+b1010010 8!
+b0 8"
+b1100011 8#
+bx 8$
+09
+b1100011 9!
+b0 9"
+b1010010 9#
+bx 9$
+b0 :
+b0 :!
+0:"
+b1100011 :#
+bx :$
+b0 ;
+b1010010 ;!
+b1100011 ;"
+b0 ;#
+bx ;$
+0<
+b0 <!
+b1100011 <"
+b1010010 <#
+bx <$
+bx =
+b0 =!
+b1010010 ="
+b0 =#
+b1100011011000110110001101100011 =$
+bx >
+0>!
+b1100011 >"
+b0 >#
+b1100011011000110110001101100011 >$
+bx ?
+b1100011 ?!
+b0 ?"
+1?#
+b1100011 ?$
+bx @
+b1100011 @!
+b1010010 @"
+b1010010 @#
+b1100011 @$
+bx A
+b1010010 A!
+b0 A"
+b1100011 A#
+b1100011 A$
+bx B
+b1100011 B!
+b0 B"
+b1010010 B#
+b1100011 B$
+bx C
+b0 C!
+0C"
+b1100011 C#
+b1100011 C$
+bx D
+b1010010 D!
+b1100011 D"
+b0 D#
+b1100011 D$
+bx E
+b0 E!
+b1100011 E"
+b1010010 E#
+b1100011 E$
+bx F
+b0 F!
+b1010010 F"
+b0 F#
+b1100011 F$
+bx G
+0G!
+b1100011 G"
+b0 G#
+bx G$
+b0 H
+b1100011 H!
+b0 H"
+1H#
+bx H$
+0I
+b1100011 I!
+b1010010 I"
+b1010010 I#
+bx I$
+0J
+b1010010 J!
+b0 J"
+b1100011 J#
+bx J$
+bx K
+b1100011 K!
+b0 K"
+b1010010 K#
+bx K$
+bx L
+b0 L!
+0L"
+b1100011 L#
+bx L$
+bx M
+b1010010 M!
+b1100011 M"
+b0 M#
+bx M$
+bx N
+b0 N!
+b1100011 N"
+b1010010 N#
+bx N$
+bx O
+b0 O!
+b1010010 O"
+b0 O#
+bx O$
+bx P
+0P!
+b1100011 P"
+b0 P#
+bx P$
+bx Q
+b1100011 Q!
+b0 Q"
+1Q#
+0Q$
+bx R
+b1100011 R!
+b1010010 R"
+b1010010 R#
+0R$
+bx S
+b1010010 S!
+b0 S"
+b1100011 S#
+b0 S$
+bx T
+b1100011 T!
+b0 T"
+b1010010 T#
+b0 T$
+0U
+b0 U!
+0U"
+b1100011 U#
+b0 U$
+bx V
+b1010010 V!
+b1100011 V"
+b0 V#
+b0 V$
+bx W
+b0 W!
+b1100011 W"
+b1010010 W#
+b0 W$
+bx X
+b0 X!
+b1010010 X"
+b0 X#
+0X$
+bx Y
+0Y!
+b1100011 Y"
+b0 Y#
+b0 Y$
+bx Z
+b1100011 Z!
+b0 Z"
+1Z#
+b1 Z$
+bx [
+b1100011 [!
+b1010010 ["
+b1010010 [#
+b10 [$
+bx \
+b1010010 \!
+b0 \"
+b1100011 \#
+bx \$
+0]
+b1100011 ]!
+b0 ]"
+b1010010 ]#
+bx ]$
+bx ^
+b0 ^!
+1^"
+b1100011 ^#
+bx _
+b1010010 _!
+b1010010 _"
+b0 _#
+bx `
+b0 `!
+b1100011 `"
+b1010010 `#
+bx a
+b0 a!
+b1010010 a"
+b0 a#
+bx b
+0b!
+b1100011 b"
+b0 b#
+bx c
+b1100011 c!
+b0 c"
+1c#
+bx d
+b1100011 d!
+b1010010 d"
+b1010010 d#
+0e
+b1010010 e!
+b0 e"
+b1100011 e#
+bx f
+b1100011 f!
+b0 f"
+b1010010 f#
+bx g
+b0 g!
+1g"
+b1100011 g#
+bx h
+b1010010 h!
+b1010010 h"
+b0 h#
+bx i
+b0 i!
+b1100011 i"
+b1010010 i#
+bx j
+b0 j!
+b1010010 j"
+b0 j#
+bx k
+0k!
+b1100011 k"
+b0 k#
+bx l
+b1100011 l!
+b0 l"
+1l#
+0m
+b1100011 m!
+b1010010 m"
+b1010010 m#
+bx n
+b1010010 n!
+b0 n"
+b1100011 n#
+bx o
+b1100011 o!
+b0 o"
+b1010010 o#
+bx p
+b0 p!
+1p"
+b1100011 p#
+bx q
+b1010010 q!
+b1010010 q"
+b0 q#
+bx r
+b0 r!
+b1100011 r"
+b1010010 r#
+bx s
+b0 s!
+b1010010 s"
+b0 s#
+b0 t
+0t!
+b1100011 t"
+b0 t#
+b0 u
+b1100011 u!
+b0 u"
+1u#
+b0 v
+b1100011 v!
+b1010010 v"
+b1010010 v#
+0w
+b1010010 w!
+b0 w"
+b1100011 w#
+b0 x
+b1100011 x!
+b0 x"
+b1010010 x#
+b0 y
+b0 y!
+1y"
+b1100011 y#
+b0 z
+b1010010 z!
+b1010010 z"
+b0 z#
+bx {
+b0 {!
+b1100011 {"
+b1010010 {#
+b1100011011000110110001101100011011000110110001101100011011000110110001101100011011000110110001101100011011000110110001101100011 |
+b0 |!
+b1010010 |"
+b0 |#
+b1100011011000110110001101100011011000110110001101100011011000110110001101100011011000110110001101100011011000110110001101100011 }
+0}!
+b1100011 }"
+b0 }#
+b1100011011000110110001101100011011000110110001101100011011000110110001101100011011000110110001101100011011000110110001101100011 ~
+b1100011 ~!
+b0 ~"
+1~#
+$end
+#5000
+1!
+1/
+#10000
+0!
+0/
+#15000
+1!
+1/
+#20000
+0!
+0/
+#25000
+1!
+1/
+#30000
+0!
+0/
+#35000
+1!
+1/
+#40000
+0!
+0/
+#45000
+1!
+1/
+#50000
+0!
+0/
+#55000
+1!
+1/
+#60000
+0!
+0/
+#65000
+1!
+1/
+#70000
+0!
+0/
+#75000
+1!
+1/
+#80000
+0!
+0/
+#85000
+1!
+1/
+#90000
+0!
+0/
+#95000
+1!
+1/
+#100000
+0!
+1"
+0/
+10
+#105000
+1!
+1/
+#110000
+0!
+0/
+#115000
+1!
+1/
+#120000
+0!
+1%
+b101011011111100001010100010110001010001010111011010010101001101010101111110111000101011000100000001001110011110100111100111100 '
+0/
+13
+b101011011111100001010100010110001010001010111011010010101001101010101111110111000101011000100000001001110011110100111100111100 5
+#125000
+1!
+0%
+1/
+03
+#130000
+0!
+0/
+#135000
+1!
+1/
+#140000
+0!
+0/
+#145000
+1!
+1/
+#150000
+0!
+0/
+#155000
+1!
+1/
+#160000
+0!
+0/
+#165000
+1!
+1/
+#170000
+0!
+0/
+#175000
+1!
+1/
+#180000
+0!
+0/
+#185000
+1!
+1/
+#190000
+0!
+0/
+#195000
+1!
+1/
+#200000
+0!
+0/
+#205000
+1!
+1/
+#210000
+0!
+0/
+#215000
+1!
+1/
+#220000
+0!
+0/
+#225000
+1!
+1/
+#230000
+0!
+0/
+#235000
+1!
+1/
+#240000
+0!
+0/
+#245000
+1!
+1/
+#250000
+0!
+0/
+#255000
+1!
+1/
+#260000
+0!
+0/
+#265000
+1!
+1/
+#270000
+0!
+0/
+#275000
+1!
+1/
+#280000
+0!
+0/
+#285000
+1!
+1/
+#290000
+0!
+0/
+#295000
+1!
+1/
+#300000
+0!
+0/
+#305000
+1!
+1/
+#310000
+0!
+0/
+#315000
+1!
+1/
+#320000
+0!
+0/
+#325000
+1!
+1/
+#330000
+0!
+0/
+#335000
+1!
+1/
+#340000
+0!
+0/
+#345000
+1!
+1/
+#350000
+0!
+0/
+#355000
+1!
+1/
+#360000
+0!
+0/
+#365000
+1!
+1/
+#370000
+0!
+0/
+#375000
+1!
+1/
+#380000
+0!
+0/
+#385000
+1!
+1/
+#390000
+0!
+0/
+#395000
+1!
+1/
+#400000
+0!
+0/
+#405000
+1!
+1/
+#410000
+0!
+0/
+#415000
+1!
+1/
+#420000
+0!
+0/
+#425000
+1!
+1/
+#430000
+0!
+0/
+#435000
+1!
+1/
+#440000
+0!
+0/
+#445000
+1!
+1/
+#450000
+0!
+0/
+#455000
+1!
+1/
+#460000
+0!
+0/
+#465000
+1!
+1/
+#470000
+0!
+0/
+#475000
+1!
+1/
+#480000
+0!
+0/
+#485000
+1!
+1/
+#490000
+0!
+0/
+#495000
+1!
+1/
+#500000
+0!
+0/
+#505000
+1!
+1/
+#510000
+0!
+0/
+#515000
+1!
+1/
+#520000
+0!
+0/
+#525000
+1!
+1/
+#530000
+0!
+0/
+#535000
+1!
+1/
+#540000
+0!
+0/
+#545000
+1!
+1/
+#550000
+0!
+0/
+#555000
+1!
+1/
+#560000
+0!
+0/
+#565000
+1!
+1/
+#570000
+0!
+0/
+#575000
+1!
+1/
+#580000
+0!
+0/
+#585000
+1!
+1/
+#590000
+0!
+0/
+#595000
+1!
+1/
+#600000
+0!
+0/
+#605000
+1!
+1/
+#610000
+0!
+0/
+#615000
+1!
+1/
+#620000
+0!
+0/
+#625000
+1!
+1/
+#630000
+0!
+0/
+#635000
+1!
+1/
+#640000
+0!
+0/
+#645000
+1!
+1/
+#650000
+0!
+0/
+#655000
+1!
+1/
+#660000
+0!
+0/
+#665000
+1!
+1/
+#670000
+0!
+0/
+#675000
+1!
+1/
+#680000
+0!
+0/
+#685000
+1!
+1/
+#690000
+0!
+0/
+#695000
+1!
+1/
+#700000
+0!
+0/
+#705000
+1!
+1/
+#710000
+0!
+0/
+#715000
+1!
+1/
+#720000
+0!
+0/
+#725000
+1!
+1/
+#730000
+0!
+0/
+#735000
+1!
+1/
+#740000
+0!
+0/
+#745000
+1!
+1/
+#750000
+0!
+0/
+#755000
+1!
+1/
+#760000
+0!
+0/
+#765000
+1!
+1/
+#770000
+0!
+0/
+#775000
+1!
+1/
+#780000
+0!
+0/
+#785000
+1!
+1/
+#790000
+0!
+0/
+#795000
+1!
+1/
+#800000
+0!
+0/
+#805000
+1!
+1/
+#810000
+0!
+0/
+#815000
+1!
+1/
+#820000
+0!
+0/
+#825000
+1!
+1/
+#830000
+0!
+0/
+#835000
+1!
+1/
+#840000
+0!
+0/
+#845000
+1!
+1/
+#850000
+0!
+0/
+#855000
+1!
+1/
+#860000
+0!
+0/
+#865000
+1!
+1/
+#870000
+0!
+0/
+#875000
+1!
+1/
+#880000
+0!
+0/
+#885000
+1!
+1/
+#890000
+0!
+0/
+#895000
+1!
+1/
+#900000
+0!
+0/
+#905000
+1!
+1/
+#910000
+0!
+0/
+#915000
+1!
+1/
+#920000
+0!
+0/
+#925000
+1!
+1/
+#930000
+0!
+0/
+#935000
+1!
+1/
+#940000
+0!
+0/
+#945000
+1!
+1/
+#950000
+0!
+0/
+#955000
+1!
+1/
+#960000
+0!
+0/
+#965000
+1!
+1/
+#970000
+0!
+0/
+#975000
+1!
+1/
+#980000
+0!
+0/
+#985000
+1!
+1/
+#990000
+0!
+0/
+#995000
+1!
+1/
+#1000000
+0!
+0/

@@ -1,0 +1,57 @@
+Vivado Simulator 2019.1
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: E:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe -wto df7a78fc7e884f07b5cea55b822ed278 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L xilinx_vip -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_aes_cbc_behav xil_defaultlib.tb_aes_cbc xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_top.v" Line 11. Module aes_top doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_key_expand.v" Line 8. Module aes_key_expand doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_core.v" Line 10. Module aes_core_default doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/aes_sbox.v" Line 7. Module aes_sbox doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "E:/Xilinx/ike_crypto_system/rtl/aes128_cbc/cbc_mode.v" Line 4. Module cbc_mode doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.aes_sbox
+Compiling module xil_defaultlib.aes_key_expand
+Compiling module xil_defaultlib.aes_core_default
+Compiling module xil_defaultlib.cbc_mode
+Compiling module xil_defaultlib.aes_top
+Compiling module xil_defaultlib.tb_aes_cbc
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_aes_cbc_behav

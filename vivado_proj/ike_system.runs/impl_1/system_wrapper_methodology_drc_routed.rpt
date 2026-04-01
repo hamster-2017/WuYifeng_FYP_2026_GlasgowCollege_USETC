@@ -1,0 +1,45 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+| Date         : Thu Mar 12 00:26:25 2026
+| Host         : HAMSTER running 64-bit major release  (build 9200)
+| Command      : report_methodology -file system_wrapper_methodology_drc_routed.rpt -pb system_wrapper_methodology_drc_routed.pb -rpx system_wrapper_methodology_drc_routed.rpx
+| Design       : system_wrapper
+| Device       : xc7z020clg400-2
+| Speed File   : -2
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 2
++---------+----------+------------------------------+------------+
+| Rule    | Severity | Description                  | Violations |
++---------+----------+------------------------------+------------+
+| LUTAR-1 | Warning  | LUT drives async reset alert | 2          |
++---------+----------+------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell system_i/axi_aes_0/inst/u_aes/done_i_1__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) system_i/axi_aes_0/inst/u_aes/u_key_expand/done_reg/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[0]/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[0]_rep/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[0]_rep__0/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[0]_rep__1/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[1]/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[1]_rep/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[1]_rep__0/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[2]/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expand_cnt_reg[3]/CLR, system_i/axi_aes_0/inst/u_aes/u_key_expand/expanding_reg/CLR, system_i/axi_aes_0/inst/u_aes/u_cbc/FSM_onehot_state_reg[1]/CLR, system_i/axi_aes_0/inst/u_aes/u_cbc/FSM_onehot_state_reg[2]/CLR, system_i/axi_aes_0/inst/u_aes/u_cbc/aes_data_in_reg[0]/CLR, system_i/axi_aes_0/inst/u_aes/u_cbc/aes_data_in_reg[100]/CLR (the first 15 of 796 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell system_i/axi_hmac_0/inst/u_hmac/u_sha1/a[0]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) system_i/axi_hmac_0/inst/u_hmac/FSM_sequential_state_reg[0]/CLR, system_i/axi_hmac_0/inst/u_hmac/FSM_sequential_state_reg[1]/CLR, system_i/axi_hmac_0/inst/u_hmac/FSM_sequential_state_reg[2]/CLR, system_i/axi_hmac_0/inst/u_hmac/FSM_sequential_state_reg[2]_rep/CLR, system_i/axi_hmac_0/inst/u_hmac/FSM_sequential_state_reg[2]_rep__0/CLR, system_i/axi_hmac_0/inst/u_hmac/done_reg/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[0]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[100]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[101]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[102]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[103]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[104]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[105]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[106]/CLR, system_i/axi_hmac_0/inst/u_hmac/inner_hash_save_reg[107]/CLR (the first 15 of 1031 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+

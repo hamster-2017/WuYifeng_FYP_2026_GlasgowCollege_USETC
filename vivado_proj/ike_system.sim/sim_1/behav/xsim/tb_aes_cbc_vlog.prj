@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../ike_system.srcs/sources_1/bd/system/ipshared/ec67/hdl" --include "../../../../ike_system.srcs/sources_1/bd/system/ipshared/8c62/hdl" --include "E:/Xilinx/Vivado/2019.1/data/xilinx_vip/include" \
+"../../../../../rtl/aes128_cbc/aes_core.v" \
+"../../../../../rtl/aes128_cbc/aes_key_expand.v" \
+"../../../../../rtl/aes128_cbc/aes_sbox.v" \
+"../../../../../rtl/aes128_cbc/aes_top.v" \
+"../../../../../rtl/aes128_cbc/cbc_mode.v" \
+"../../../../../sim/tb_aes_cbc.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
