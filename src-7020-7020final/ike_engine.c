@@ -105,6 +105,8 @@ void ike_init(ike_context_t *ctx, ike_role_t role,
         get_random_bytes(ctx->cky_r, 8);
         get_random_bytes(ctx->nonce_r, NONCE_LEN);
     }
+    /* 生成 DH 私钥（随机 256 字节），用于计算公钥 g^x mod p */
+    get_random_bytes(ctx->dh_private, DH_KEY_LEN);
     dh_mod_exp(dh14_g, ctx->dh_private, dh14_p, ctx->dh_public);
     ctx->state = IKE_STATE_IDLE;
 }
