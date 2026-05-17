@@ -28,7 +28,7 @@
 //    uint8_t hmac_actual[20];
 //    uint8_t hmac_expected[20] = {0xb6,0x17,0x31,0x86,0x55,0x05,0x72,0x64,0xe2,0x8b,0xc0,0xb6,0xfb,0x37,0x8c,0x8e,0xf1,0x46,0xbe,0x00};
 //
-//    hmac_sha1_compute(hmac_key, 20, hmac_data, 8, hmac_actual);
+//    hw_hmac_sha1(hmac_key, 20, hmac_data, 8, hmac_actual);
 //    if(memcmp(hmac_actual, hmac_expected, 20) == 0)
 //        xil_printf("[PASS] T-HMAC-01: RFC 2104 Vector Match.\r\n");
 //    else xil_printf("[FAIL] T-HMAC-01: HMAC Mismatch!\r\n");
