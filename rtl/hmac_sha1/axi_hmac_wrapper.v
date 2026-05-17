@@ -1,17 +1,17 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// =============================================================================
+// HMAC-SHA1 AXI4-Lite 从接口封�?
+//
+// NOTE: �? HMAC-SHA1 引擎封装�? AXI4-Lite 从设备�??
+//       PS 端�?�过寄存器写入密钥�?�消息数据和长度，启动计算后读取 HMAC 结果�?
+//
+// 寄存器映�?:
+//   0x000: CTRL    [W]  bit[0]=start
+//   0x004: STATUS  [R]  bit[0]=done
+//   0x008: MSG_LEN [W]  消息字节长度�?0~55�?
+//   0x010~0x04F: KEY[16]  [W]  512-bit 密钥�?16×32bit�?
+//   0x050~0x08F: MSG[16]  [W]  512-bit 消息�?16×32bit�?
+//   0x090~0x0A3: HASH[5]  [R]  160-bit HMAC 输出�?5×32bit�?
+// =============================================================================
 `timescale 1ns / 1ps
 
 module axi_hmac_wrapper #(
@@ -44,16 +44,19 @@ module axi_hmac_wrapper #(
     assign S_AXI_BRESP = 2'b00;
     assign S_AXI_RRESP = 2'b00;
 
-    reg [31:0] reg_key [0:15];   
-    reg [31:0] reg_msg [0:15];   
-    reg [7:0]  reg_msg_len;      
+    // ---- 内部寄存�? ----
+    reg [31:0] reg_key [0:15];   // 512-bit 密钥
+    reg [31:0] reg_msg [0:15];   // 512-bit 消息
+    reg [7:0]  reg_msg_len;      // 消息长度
     reg        ctrl_start;
 
+    // HMAC 引擎信号
     wire [511:0] hmac_key;
     wire [511:0] hmac_msg;
     wire [159:0] hmac_out;
     wire         hmac_done;
 
+    // 将寄存器数组拼接�? 512-bit
     genvar gi;
     generate
         for (gi = 0; gi < 16; gi = gi + 1) begin : key_msg_concat
@@ -62,6 +65,7 @@ module axi_hmac_wrapper #(
         end
     endgenerate
 
+    // ---- HMAC-SHA1 实例�? ----
     hmac_wrapper u_hmac (
         .clk      (S_AXI_ACLK),
         .rst_n    (S_AXI_ARESETN),
@@ -73,19 +77,21 @@ module axi_hmac_wrapper #(
         .done     (hmac_done)
     );
 
+    // ---- 状�?�锁存器 (解决 1 周期脉冲�? AXI 读取时丢失的问题) ----
     reg status_done_latched;
     always @(posedge S_AXI_ACLK) begin
         if (!S_AXI_ARESETN) begin
             status_done_latched <= 1'b0;
         end else begin
             if (ctrl_start) begin
-                status_done_latched <= 1'b0; 
+                status_done_latched <= 1'b0; // 新数据块启动时清�? DONE 状�??
             end else if (hmac_done) begin
-                status_done_latched <= 1'b1; 
+                status_done_latched <= 1'b1; // 抓取硬件�? 1 周期完成脉冲
             end
         end
     end
 
+    // ---- AXI 写�?�辑 ----
     reg [C_S_AXI_ADDR_WIDTH-1:0] aw_addr;
     reg aw_done, w_done;
 
@@ -122,41 +128,44 @@ module axi_hmac_wrapper #(
             if (S_AXI_WVALID && !w_done && aw_done) begin
                 S_AXI_WREADY <= 1'b1;
                 w_done       <= 1'b1;
+                // 地址解码
                 case (aw_addr[7:2])
-                    6'h00: ctrl_start  <= S_AXI_WDATA[0];  
-                    6'h02: reg_msg_len <= S_AXI_WDATA[7:0]; 
-                    6'h04: reg_key[0]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h05: reg_key[1]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h06: reg_key[2]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h07: reg_key[3]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h08: reg_key[4]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h09: reg_key[5]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h0A: reg_key[6]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h0B: reg_key[7]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h0C: reg_key[8]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h0D: reg_key[9]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h0E: reg_key[10] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h0F: reg_key[11] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h10: reg_key[12] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h11: reg_key[13] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h12: reg_key[14] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h13: reg_key[15] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h14: reg_msg[0]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h15: reg_msg[1]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h16: reg_msg[2]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h17: reg_msg[3]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h18: reg_msg[4]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h19: reg_msg[5]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h1A: reg_msg[6]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h1B: reg_msg[7]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h1C: reg_msg[8]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h1D: reg_msg[9]  <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h1E: reg_msg[10] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h1F: reg_msg[11] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h20: reg_msg[12] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h21: reg_msg[13] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h22: reg_msg[14] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
-                    6'h23: reg_msg[15] <= {S_AXI_WDATA[7:0], S_AXI_WDATA[15:8], S_AXI_WDATA[23:16], S_AXI_WDATA[31:24]};
+                    6'h00: ctrl_start  <= S_AXI_WDATA[0];  // CTRL
+                    6'h02: reg_msg_len <= S_AXI_WDATA[7:0]; // MSG_LEN
+                    // KEY 寄存�? 0x10~0x4F (字地�? 0x04~0x13)
+                    6'h04: reg_key[0]  <= S_AXI_WDATA;
+                    6'h05: reg_key[1]  <= S_AXI_WDATA;
+                    6'h06: reg_key[2]  <= S_AXI_WDATA;
+                    6'h07: reg_key[3]  <= S_AXI_WDATA;
+                    6'h08: reg_key[4]  <= S_AXI_WDATA;
+                    6'h09: reg_key[5]  <= S_AXI_WDATA;
+                    6'h0A: reg_key[6]  <= S_AXI_WDATA;
+                    6'h0B: reg_key[7]  <= S_AXI_WDATA;
+                    6'h0C: reg_key[8]  <= S_AXI_WDATA;
+                    6'h0D: reg_key[9]  <= S_AXI_WDATA;
+                    6'h0E: reg_key[10] <= S_AXI_WDATA;
+                    6'h0F: reg_key[11] <= S_AXI_WDATA;
+                    6'h10: reg_key[12] <= S_AXI_WDATA;
+                    6'h11: reg_key[13] <= S_AXI_WDATA;
+                    6'h12: reg_key[14] <= S_AXI_WDATA;
+                    6'h13: reg_key[15] <= S_AXI_WDATA;
+                    // MSG 寄存�? 0x50~0x8F (字地�? 0x14~0x23)
+                    6'h14: reg_msg[0]  <= S_AXI_WDATA;
+                    6'h15: reg_msg[1]  <= S_AXI_WDATA;
+                    6'h16: reg_msg[2]  <= S_AXI_WDATA;
+                    6'h17: reg_msg[3]  <= S_AXI_WDATA;
+                    6'h18: reg_msg[4]  <= S_AXI_WDATA;
+                    6'h19: reg_msg[5]  <= S_AXI_WDATA;
+                    6'h1A: reg_msg[6]  <= S_AXI_WDATA;
+                    6'h1B: reg_msg[7]  <= S_AXI_WDATA;
+                    6'h1C: reg_msg[8]  <= S_AXI_WDATA;
+                    6'h1D: reg_msg[9]  <= S_AXI_WDATA;
+                    6'h1E: reg_msg[10] <= S_AXI_WDATA;
+                    6'h1F: reg_msg[11] <= S_AXI_WDATA;
+                    6'h20: reg_msg[12] <= S_AXI_WDATA;
+                    6'h21: reg_msg[13] <= S_AXI_WDATA;
+                    6'h22: reg_msg[14] <= S_AXI_WDATA;
+                    6'h23: reg_msg[15] <= S_AXI_WDATA;
                     default: ;
                 endcase
             end else begin
@@ -166,6 +175,7 @@ module axi_hmac_wrapper #(
         end
     end
 
+    // 写响�?
     always @(posedge S_AXI_ACLK) begin
         if (!S_AXI_ARESETN)
             S_AXI_BVALID <= 1'b0;
@@ -175,6 +185,7 @@ module axi_hmac_wrapper #(
             S_AXI_BVALID <= 1'b0;
     end
 
+    // ---- AXI 读�?�辑 ----
     reg [C_S_AXI_ADDR_WIDTH-1:0] ar_addr;
 
     always @(posedge S_AXI_ACLK) begin
@@ -198,12 +209,13 @@ module axi_hmac_wrapper #(
             if (S_AXI_ARREADY) begin
                 S_AXI_RVALID <= 1'b1;
                 case (ar_addr[7:2])
-                    6'h01: S_AXI_RDATA <= {31'd0, status_done_latched};     
-                    6'h24: S_AXI_RDATA <= {hmac_out[135:128], hmac_out[143:136], hmac_out[151:144], hmac_out[159:152]};      
-                    6'h25: S_AXI_RDATA <= {hmac_out[103:96],  hmac_out[111:104], hmac_out[119:112], hmac_out[127:120]};      
-                    6'h26: S_AXI_RDATA <= {hmac_out[71:64],   hmac_out[79:72],   hmac_out[87:80],   hmac_out[95:88]};        
-                    6'h27: S_AXI_RDATA <= {hmac_out[39:32],   hmac_out[47:40],   hmac_out[55:48],   hmac_out[63:56]};        
-                    6'h28: S_AXI_RDATA <= {hmac_out[7:0],     hmac_out[15:8],    hmac_out[23:16],   hmac_out[31:24]};        
+                    6'h01: S_AXI_RDATA <= {31'd0, status_done_latched};     // STATUS
+                    // HASH 输出 (5×32bit)
+                    6'h24: S_AXI_RDATA <= hmac_out[159:128];  // HASH0
+                    6'h25: S_AXI_RDATA <= hmac_out[127:96];   // HASH1
+                    6'h26: S_AXI_RDATA <= hmac_out[95:64];    // HASH2
+                    6'h27: S_AXI_RDATA <= hmac_out[63:32];    // HASH3
+                    6'h28: S_AXI_RDATA <= hmac_out[31:0];     // HASH4
                     default: S_AXI_RDATA <= 32'hDEADBEEF;
                 endcase
             end else if (S_AXI_RVALID && S_AXI_RREADY)
